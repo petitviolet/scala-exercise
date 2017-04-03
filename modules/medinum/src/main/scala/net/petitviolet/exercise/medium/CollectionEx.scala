@@ -1,5 +1,8 @@
 package net.petitviolet.exercise.medium
 
+/**
+ * exercise about collections
+ */
 trait CollectionEx {
   /**
    * if `target` is longer than 3 return the third element,
