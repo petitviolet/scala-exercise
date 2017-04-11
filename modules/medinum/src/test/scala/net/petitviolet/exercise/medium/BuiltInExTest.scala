@@ -1,12 +1,9 @@
 package net.petitviolet.exercise.medium
 
-import org.scalatest.{ FlatSpec, GivenWhenThen, Matchers }
-
 import scala.util.Try
 
-class BuiltInExTest extends FlatSpec with Matchers with GivenWhenThen {
+class BuiltInExTest extends TestBase {
   import BuiltInExImpl._
-  import scala.concurrent.ExecutionContext.Implicits.global
 
   "getFirstFinished" should "return the first finished Value" in {
     getFirstFinished(10, 100) shouldBe 10

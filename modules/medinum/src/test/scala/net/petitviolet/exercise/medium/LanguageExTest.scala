@@ -2,11 +2,10 @@ package net.petitviolet.exercise.medium
 
 import org.scalatest.concurrent.TimeLimits
 import org.scalatest.time.SpanSugar._
-import org.scalatest.{ FlatSpec, GivenWhenThen, Matchers }
 
 import scala.language.postfixOps
 
-class LanguageExTest extends FlatSpec with Matchers with GivenWhenThen with TimeLimits {
+class LanguageExTest extends TestBase {
   import LanguageExImpl._
 
   "WrapInt operator" should "work as normal operator" in {

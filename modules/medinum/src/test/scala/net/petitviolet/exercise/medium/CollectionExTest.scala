@@ -1,10 +1,8 @@
 package net.petitviolet.exercise.medium
 
-import org.scalatest._
-
 import scala.collection.immutable
 
-class CollectionExTest extends FlatSpec with Matchers with GivenWhenThen {
+class CollectionExTest extends TestBase {
   import CollectionExImpl._
   "extractThirdOrSecond" should "return the third element" in {
     extractThirdOrSecond(1 :: 2 :: 3 :: 4 :: Nil) shouldBe Some(3)
