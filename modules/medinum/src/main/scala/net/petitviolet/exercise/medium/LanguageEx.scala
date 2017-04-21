@@ -16,6 +16,19 @@ trait LanguageEx {
     def -:(other: WrapInt): WrapInt
   }
 
-  def map[T](seq: Seq[T], f: => T => T): Seq[T]
+  /**
+   * apply function to each elements
+   */
+  def mapTuple[A, B](tuple: (A, A, A), f: => A => B): (B, B, B)
+
+  /**
+   * sum size of collections
+   */
+  def sumSize[T](collections: Iterable[Iterable[T]]): Int
+
+  /**
+   * enable for-expression on MyFor[T]
+   */
+  //  trait MyFor[T]
 }
 

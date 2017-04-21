@@ -16,14 +16,23 @@ class LanguageExTest extends TestBase {
   }
 
   "map" should "apply functions on each elements" in {
-    map[Int](Nil, { i => i * 2 }) shouldBe empty
-    TimeLimits.failAfter(10 millis)(map[Int](Nil, { Thread.sleep(50); i => { i * 2 } }))
-
-    val seq = 1 to 3
-    map[Int](seq, { i => i * 2 }) shouldBe Seq(2, 4, 6)
-    TimeLimits.failAfter(60 millis) {
-      map[Int](seq, { Thread.sleep(50); i => { i * 2 } }) shouldBe Seq(2, 4, 6)
+    mapTuple[String, Int](("hoge", "foo", "bo"), { _.length }) shouldBe (4, 3, 2)
+    TimeLimits.failAfter(80 millis) {
+      mapTuple[String, Int](("hoge", "foo", "bo"), { Thread.sleep(50); _.length }) shouldBe (4, 3, 2)
     }
+
   }
 
+  "sumSize" should "return sum size of provided collections" in {
+    sumSize(List(Set(1, 2), List(3, 4))) shouldBe 4
+    sumSize(Set(List(1, 2), Set(3, 4))) shouldBe 4
+  }
+
+  "MyFor" should "can use for-expression" in {
+    val _ = for {
+      a <- MyForImpl(2)
+      b <- MyForImpl(3) if b >= 3
+      c <- MyForImpl(4)
+    } yield a * b * c
+  }
 }

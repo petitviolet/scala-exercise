@@ -7,15 +7,21 @@ import scala.util.Try
  * exercise about built-in classes
  */
 trait BuiltInEx {
-  final private def sleepInt(n: Int)(implicit ec: ExecutionContext): Future[Int] =
-    Future { Thread.sleep(n * 100); n }
-
   final def getFirstFinished(i: Int, j: Int)(implicit ec: ExecutionContext): Int = {
+    def sleepInt(n: Int)(implicit ec: ExecutionContext) = Future { Thread.sleep(n * 100); n }
+
     val iSleep = sleepInt(i)
     val jSleep = sleepInt(j)
     firstFinishFuture(iSleep, jSleep)
   }
 
+  /**
+   * return only the first completed value
+   * @param iF
+   * @param jF
+   * @param ec
+   * @return
+   */
   protected def firstFinishFuture(iF: Future[Int], jF: Future[Int])(implicit ec: ExecutionContext): Int
 
   /**
