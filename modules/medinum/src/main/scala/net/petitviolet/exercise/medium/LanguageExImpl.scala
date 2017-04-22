@@ -26,6 +26,7 @@ object LanguageExImpl extends LanguageEx {
   }
 
   sealed trait MyFor[+T] {
+    def value: T
     def map[U](f: T => U): MyFor[U]
     def flatMap[U](f: T => MyFor[U]): MyFor[U]
     def withFilter(f: T => Boolean): MyFor[T]
@@ -39,6 +40,7 @@ object LanguageExImpl extends LanguageEx {
     override def withFilter(f: (T) => Boolean): MyFor[T] = if (f(value)) this else MyForFail
   }
   case object MyForFail extends MyFor[Nothing] {
+    override def value = sys.error("cannot get value")
     override def map[U](f: (Nothing) => U): MyFor[U] = MyForFail
     override def flatMap[U](f: (Nothing) => MyFor[U]): MyFor[U] = MyForFail
     override def withFilter(f: (Nothing) => Boolean): MyFor[Nothing] = MyForFail

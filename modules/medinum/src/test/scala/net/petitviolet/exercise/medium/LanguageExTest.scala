@@ -29,10 +29,19 @@ class LanguageExTest extends TestBase {
   }
 
   "MyFor" should "can use for-expression" in {
-    val _ = for {
+    val r: MyFor[Int] = for {
       a <- MyForImpl(2)
-      b <- MyForImpl(3) if b >= 3
-      c <- MyForImpl(4)
-    } yield a * b * c
+      b <- MyForImpl(Seq(1, 2, 3)) if b.size >= 3
+      c <- MyForImpl("4444")
+    } yield a * b.sum * c.length
+    r shouldBe a[MyForImpl[_]]
+    r.value shouldBe 2 * 6 * 4
+
+    val r2: MyFor[Int] = for {
+      a <- MyForImpl(2) if a != 2
+      b <- MyForImpl(Seq(1, 2, 3)) if b.size >= 3
+      c <- MyForImpl("4444")
+    } yield a * b.sum * c.length
+    r2 shouldBe MyForFail
   }
 }
