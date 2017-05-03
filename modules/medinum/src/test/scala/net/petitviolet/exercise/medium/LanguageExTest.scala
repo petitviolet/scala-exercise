@@ -15,7 +15,7 @@ class LanguageExTest extends TestBase {
     (left -: right).value shouldBe -10
   }
 
-  "map" should "apply functions on each elements" in {
+  "mapTuple" should "apply functions on each elements" in {
     mapTuple[String, Int](("hoge", "foo", "bo"), { _.length }) shouldBe (4, 3, 2)
     TimeLimits.failAfter(80 millis) {
       mapTuple[String, Int](("hoge", "foo", "bo"), { Thread.sleep(50); _.length }) shouldBe (4, 3, 2)

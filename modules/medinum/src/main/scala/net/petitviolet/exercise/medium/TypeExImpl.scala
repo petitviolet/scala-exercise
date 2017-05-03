@@ -38,7 +38,7 @@ object TypeExImpl extends TypeEx {
     override def +(other: Mile2): Mile2 = Mile2(value + other.value)
   }
 
-  trait Validator[-A] { self =>
+  sealed trait Validator[-A] { self =>
     def validate(target: A): Option[String]
 
     final def &&[B <: A](other: Validator[B]): Validator[B] = new Validator[B] {

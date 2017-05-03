@@ -15,7 +15,7 @@ class TypeExTest extends TestBase {
     Mile2(20) + Mile2(30) shouldBe Mile2(50)
   }
 
-  "Validator" should "" in {
+  "Validator" should "validate and combine" in {
     val weakValidator: Validator[Weak] = EmptyValidator && LengthValidator(4) && AlphabetValidator
 
     weakValidator.validate(Weak("hoge")) shouldBe empty
