@@ -63,16 +63,14 @@ object TypeExImpl extends TypeEx {
   }
 
   case object AlphabetValidator extends Validator[Weak] {
-    private val p = ".*[a-z].*".r.pattern
-    override def validate(target: TypeExImpl.Weak): Option[String] = {
-      if (p.matcher(target.value).matches()) None
+    override def validate(target: Weak): Option[String] = {
+      if (hasAlphabet(target.value)) None
       else Some("password must contains alphabet")
     }
   }
   case object SymbolValidator extends Validator[Strong] {
-    private val p = ".*[!*+~_].*".r.pattern
     override def validate(target: Strong): Option[String] = {
-      if (p.matcher(target.value).matches()) None
+      if (hasSymbol(target.value)) None
       else Some("password must contains symbol")
     }
   }

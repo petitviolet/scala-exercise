@@ -53,5 +53,7 @@ trait TypeEx {
       case (Some(a), Some(b)) => Some(s"$a & $b")
     }
   }
+  final protected def hasAlphabet(str: String): Boolean = str.matches(".*[a-z].*")
+  final protected def hasSymbol(str: String): Boolean = str.matches(".*[!*+~_].*")
 
 }
