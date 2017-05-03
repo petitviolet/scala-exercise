@@ -1,12 +1,14 @@
 package net.petitviolet.exercise.medium
 
 import scala.concurrent.{ ExecutionContext, Future }
-import scala.util.Try
+import scala.util._
 
 /**
  * exercise about built-in classes
  */
 trait BuiltInEx {
+  protected implicit val ec: ExecutionContext = scala.concurrent.ExecutionContext.Implicits.global
+
   final def getFirstFinished(i: Int, j: Int)(implicit ec: ExecutionContext): Int = {
     def sleepInt(n: Int)(implicit ec: ExecutionContext) = Future { Thread.sleep(n * 100); n }
 
@@ -35,4 +37,15 @@ trait BuiltInEx {
    * @return
    */
   def composeMonads(t: Try[Int], o: Option[Int], e: Either[Throwable, Int], s: Seq[Int]): Int
+
+  /**
+   * compose Int of deep Monads
+   * sum all Int values
+   * when one or more [[Try]] or [[Future]] fail, return [[Failure]]
+   * @param to
+   * @param sf
+   * @param fo
+   * @return
+   */
+  def composeDeepMonads(to: Try[Option[Int]], sf: Seq[Future[Int]], fo: Future[Option[Int]]): Future[Int]
 }
