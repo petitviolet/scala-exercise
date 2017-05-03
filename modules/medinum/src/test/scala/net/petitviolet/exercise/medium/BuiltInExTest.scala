@@ -20,7 +20,7 @@ class BuiltInExTest extends TestBase {
     composeMonads(Try(1), Option(2), Right(3), Nil) shouldBe 0
   }
 
-  "composeDeepMonads" should "return sumed values" in {
+  "composeDeepMonads" should "return summed values" in {
     val t = new RuntimeException("fail")
     def toF[A](a: => A): Future[A] = Future(a)(ec)
     val f = composeDeepMonads _
