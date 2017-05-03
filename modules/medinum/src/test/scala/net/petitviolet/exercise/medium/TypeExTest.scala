@@ -21,6 +21,7 @@ class TypeExTest extends TestBase {
     weakValidator.validate(Weak("hoge")) shouldBe empty
     weakValidator.validate(Weak("1234")) should not be empty
 
+    //    val strongValidator: Validator[Strong] = EmptyValidator && LengthValidator(8) && SymbolValidator
     val strongValidator: Validator[Strong] = SymbolValidator && EmptyValidator && LengthValidator(8)
     strongValidator.validate(Strong("hoge****")) shouldBe empty
     strongValidator.validate(Strong("hoge")) should not be empty

@@ -1,6 +1,6 @@
 package net.petitviolet.exercise.medium
 
-import scala.concurrent.{ ExecutionContext, Future }
+import scala.concurrent.Future
 import scala.util.{ Failure, Success, Try }
 
 class BuiltInExTest extends TestBase {
@@ -34,6 +34,7 @@ class BuiltInExTest extends TestBase {
     whenReady(f(Success(Some(1)), toF(2) :: toF(3) :: toF(4) :: Nil, toF(None))) { r =>
       r shouldBe 10
     }
+
     whenReady(f(Failure(t), toF(2) :: toF(3) :: toF(4) :: Nil, toF(Some(5))).failed) { r =>
       r shouldBe t
     }

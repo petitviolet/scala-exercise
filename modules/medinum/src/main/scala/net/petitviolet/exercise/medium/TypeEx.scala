@@ -30,9 +30,6 @@ trait TypeEx {
    *  case class LengthValidator(length: Int) extends Validator[Password] { ??? }
    *  object AlphabetValidator extends Validator[Weak] { ??? }
    *  object SymbolValidator extends Validator[Strong] { ??? }
-   *
-   *  val weakValidator: Validator[Weak] = EmptyValidator && LengthValidator(4) && AlphabetValidator
-   *  val strongValidator: Validator[Strong] = EmptyValidator && LengthValidator(8) && SymbolValidator
    * }}}
    */
   // just sample
