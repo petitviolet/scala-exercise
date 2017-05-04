@@ -16,7 +16,7 @@ object BuiltInExImpl extends BuiltInEx {
     (for {
       _t <- t.toOption
       _o <- o
-      _e <- e.right.toOption
+      _e <- e.toOption
       _s <- s.reduceOption { _ * _ }
     } yield _t * _o * _e * _s) getOrElse 0
   }
