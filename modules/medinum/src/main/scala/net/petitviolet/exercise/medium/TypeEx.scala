@@ -33,13 +33,11 @@ trait TypeEx {
    * }}}
    */
   // just sample
-  //  trait Validator[-A] { self =>
+  //  trait Validator[A] { self =>
   //    def validate(target: A): Option[String]
   //
   //    final def &&[B <: A](other: Validator[B]): Validator[B] = new Validator[B] {
-  //      override def validate(target: B): Option[String] = {
-  //        self.validate(target) orElse other.validate(target)
-  //      }
+  //      override def validate(target: B): Option[String] = ???
   //    }
   //  }
   final protected def combineOptionString(aOpt: Option[String], bOpt: Option[String]): Option[String] = {
