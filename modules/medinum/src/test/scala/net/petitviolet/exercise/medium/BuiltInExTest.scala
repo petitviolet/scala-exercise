@@ -1,12 +1,20 @@
 package net.petitviolet.exercise.medium
 
-import scala.concurrent.Future
+import scala.concurrent.{ ExecutionContext, Future }
 import scala.util.{ Failure, Success, Try }
 
 class BuiltInExTest extends TestBase {
   import BuiltInExImpl._
 
   "getFirstFinished" should "return the first finished Value" in {
+    def getFirstFinished(i: Int, j: Int)(implicit ec: ExecutionContext): Int = {
+      def sleepInt(n: Int)(implicit ec: ExecutionContext) = Future { Thread.sleep(n * 100); n }
+
+      val iSleep = sleepInt(i)
+      val jSleep = sleepInt(j)
+      firstFinishFuture(iSleep, jSleep)
+    }
+
     getFirstFinished(10, 100) shouldBe 10
     getFirstFinished(300, 10) shouldBe 10
   }
